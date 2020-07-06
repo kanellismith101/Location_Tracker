@@ -1,12 +1,9 @@
-import React, { useState, useContext } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {  StyleSheet } from "react-native";
 import { Input, Text, Button } from "react-native-elements";
-import Spacer from "../components/Spacer";
-import { Context as AuthContext } from "../context/AuthContext";
-import { navigate } from "../navigationRef";
+import Spacer from "./Spacer";
 
-const AuthForm = ({ headerText, errorMessage, onSubmit, buttonText }) => {
-  const { state, signup } = useContext(AuthContext);
+const AuthForm = ({ headerText, errorMessage, onSubmit, buttonText }) => { 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -47,11 +44,11 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, buttonText }) => {
     </>
   );
 };
-SignupScreen.navigationOptions = () => {
-  return {
-    headerShown: false,
-  };
-};
+// SignupScreen.navigationOptions = () => {
+//   return {
+//     headerShown: false,
+//   };
+// };
 const styles = StyleSheet.create({
   errorMessage: {
     fontSize: 15,

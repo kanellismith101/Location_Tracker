@@ -1,32 +1,31 @@
-import React, {  useContext } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
-import {  Text,  } from "react-native-elements";
-import Spacer from "../components/Spacer";
+import React, { useContext } from "react";
+import { View, StyleSheet } from "react-native";
+import { NavigationEvents } from "react-navigation";
 import { Context as AuthContext } from "../context/AuthContext";
-import { navigate } from "../navigationRef";
 import AuthForm from "../components/AuthForm";
+import NavLink from "../components/NavLink";
 
-const SignupScreen = ({ navigation }) => {
-  const { state, signup } = useContext(AuthContext);
+const SignupScreen = () => {
+  const { state, signup, clearErrorMessage } = useContext(
+    AuthContext
+  );
+
   return (
     <View style={styles.container}>
+      <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText="Sign Up for Tracker"
         errorMessage={state.errorMessage}
         buttonText="Sign up"
         onSubmit={signup}
       ></AuthForm>
-      <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-        <Spacer>
-          <Text style={styles.link}>Sign in Here...</Text>
-        </Spacer>
-      </TouchableOpacity>
+      <NavLink text="Click here to sign in" routeName="Signin" />
     </View>
   );
 };
 SignupScreen.navigationOptions = () => {
   return {
-    headerShown: false,
+    header: () => false,
   };
 };
 const styles = StyleSheet.create({
@@ -34,11 +33,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "red",
     marginLeft: 15,
-  },
-  link: {
-    fontSize: 15,
-    color: "blue",
-    marginLeft: 10,
   },
   container: {
     flex: 1,
