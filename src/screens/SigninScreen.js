@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
-import { View, StyleSheet } from "react-native";
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  ScrollView,
+} from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { Context as AuthContext } from "../context/AuthContext";
 import AuthForm from "../components/AuthForm";
@@ -9,16 +14,20 @@ const SigninScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(AuthContext);
 
   return (
-    <View style={styles.container}>
-      <NavigationEvents onWillFocus={clearErrorMessage} />
-      <AuthForm
-        headerText="Sign in to Tracker"
-        errorMessage={state.errorMessage}
-        buttonText="Sign in"
-        onSubmit={signin}
-      ></AuthForm>
-      <NavLink text="Click here to sign up" routeName="Signup" />
-    </View>
+    <KeyboardAvoidingView>
+      <ScrollView>
+        <View style={styles.container}>
+          <NavigationEvents onWillFocus={clearErrorMessage} />
+          <AuthForm
+            headerText="Sign in to Tracker"
+            errorMessage={state.errorMessage}
+            buttonText="Sign in"
+            onSubmit={signin}
+          ></AuthForm>
+          <NavLink text="Click here to sign up" routeName="Signup" />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 SigninScreen.navigationOptions = () => {

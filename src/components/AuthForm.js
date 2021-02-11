@@ -19,6 +19,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, buttonText }) => {
           onChangeText={setEmail}
           autoCapitalize="none"
           autoCorrect={false}
+          autoFocus={true}
         />
       </Spacer>
       <Spacer>

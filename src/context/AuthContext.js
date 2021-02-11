@@ -5,7 +5,7 @@ import { navigate } from "../navigationRef";
 
 const authReducer = (state, action) => {
   switch (action.type) {
-    case "add_error":
+    case "add_error": //
       return { ...state, errorMessage: action.payload };
     case "signin":
       return { errorMessage: "", token: action.payload };
